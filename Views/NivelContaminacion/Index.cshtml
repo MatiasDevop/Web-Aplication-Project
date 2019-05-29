@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MVClog.Models.NivelContaminacion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<h2 class=" alert alert-success">Nivel de contaminacion</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table table-striped projects">
+    <tr style="color:black;font-size:20px;font-weight:bold;">
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Concentracion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Calificativo)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Recomendacion)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Contaminante.Nombre)
+        </th>
+        <th>
+            Estacion
+            @*@Html.DisplayNameFor(model => model.Estacion.Name)*@
+        </th>
+        <th>
+            Progresso
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="color:black;font-size:20px;font-weight:bold;">
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Concentracion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calificativo)
+            </td>
+            @*<td style="width:12px;">
+                    @Html.DisplayFor(modelItem => item.Recomendacion)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Contaminante.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estacion.Name)
+            </td>
+            <td class="project_progress">
+                <div class="progress progress_sm">
+                    <div id="progress" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="300" style="width:@Convert.ToInt32(item.Concentracion)%">
+
+                    </div>
+                </div>
+                <small id="data">@Html.DisplayFor(modelItem => item.Concentracion)%</small>
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.NivelID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.NivelID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NivelID })*@
+            </td>
+        </tr>
+    }
+
+</table>
+<script>
+    //var randomWifth = document.getElementById("data").innerHTML;
+    //alert(randomWifth)
+    ////var randomWidth = 200*Math.random() + "px";
+    //document.getElementById("progress").style.width = randomWidth;
+</script>

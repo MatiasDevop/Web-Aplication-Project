@@ -1,0 +1,1488 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="ModulePanel">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Administrator/css/sb-admin.css" rel="stylesheet" />
+
+    <link href="~/Content/Administrator/css/plugins/morris.css" rel="stylesheet" />
+    <link href="~/Content/Administrator/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/angular.min.js"></script>
+
+
+</head>
+<body ng-controller="datosController">
+
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Home/Index">Inicio</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>Hola<b class="fa-caret-up"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> @Html.Partial("_LoginPartial")</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                        </li>
+                        @*<li>
+                                <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            </li>*@
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="/Admin/Index"><i class="fa fa-bar-chart"></i> Principal</a>
+
+                    </li>
+                    <li id="chart">
+                        <a href="/AutomaticoPM/Index"> <i class="fa fa-flask" aria-hidden="true"></i> Datos automatico</a>
+                    </li>
+                    <li>
+                        <a href="/ActivoPM/Index"> <i class="fa fa-flask" aria-hidden="true"></i> Datos de PM por activo</a>
+                    </li>
+                    <li>
+                        <a href="/Pasivo/Index">Datos de NO2 Monitoro pasivo</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Charts"><i class="fa fa-area-chart"></i> Graficas de datos</a>
+                    </li>
+                    
+                  
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Importar datos<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="/ActivoPM/Import">Importar datos Metodo activo</a>
+                            </li>
+                            <li>
+                                <a href="/AutomaticoPM/Import">Importar datos Automatico</a>
+                            </li>
+                           
+                            <li>
+                                <a href="/Pasivo/Import">Cargar datos Dioxido de nitrogeno</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/NivelContaminacion/Index"><i class="fa fa-area-chart" aria-hidden="true"></i>Nivek de contaminantes</a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-arrows-v"></i>Estaciones<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo2" class="collapse">
+                            <li>
+                                <a href="/Estacion/Index">Registro de Estacion</a>
+                            </li>
+                            <li>
+                                <a href="#">Martin cardenas</a>
+                            </li>
+                            <li>
+                                <a href="/Admin/Estaciones">Reportes</a>
+                            </li>
+                           
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/Rango/Index"><i class="fa fa-fw fa-dashboard"></i> Indice de contaminacion atmosferica</a>
+                    </li>
+                    <li>
+                        <a href="/Contaminante/Index"><i class="fa fa-fw fa-dashboard"></i> Contaminantes Criterio</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            @RenderBody()
+        
+
+        </div>
+    </div>
+
+    @*@RenderSection("featured", required: false)*@
+    @RenderSection("scripts", required: false)
+   
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBck-3uNAjfPcOQX1GIKp7nyvjepgNuXA&libraries=places&sensor=false"></script>
+
+    <script src="~/Content/Administrator/js/jquery.js"></script>
+    <script src="~/Content/Administrator/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/highcharts.js"></script>
+    <script src="~/Content/js/highcharts-more.js"></script>
+    <script src="~/Content/js/solid-gauge.js"></script>
+    <script src="~/Content/js/jquery.sparkline.min.js"></script>
+    
+
+    <script>
+     
+
+        var app = angular.module("ModulePanel", []);
+        app.controller("datosController", function ($scope, $http) {
+
+            var monthNames = ["January", "February", "March", "April", "May", "June",
+                   "July", "August", "September", "October", "November", "December"
+            ];
+            var meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+           $scope.list = [];
+            $scope.data = [];
+            $scope.meses = [];
+            $http.get('http://localhost:3249/Api/NivelContaminacionApi').
+           success(function (data, status, headers, config) {
+               $scope.nivel = data;
+                console.log($scope.nivel)
+               for (var i = 0; i < $scope.nivel.length; i++) {
+                   //console.log($scope.nivel[i].Estacion.EstacionId);
+                   if ($scope.nivel[i].Estacion.EstacionId==1){//Contaminante.Nombre == "PM") {
+                     
+                       $scope.data.push($scope.nivel[i].Concentracion)
+             
+                       var fecha = $scope.nivel[i].Fecha;
+                       //console.log(fecha);
+                       var dateObj = new Date(fecha);
+                       var n = dateObj.getDate();
+                       // console.log("n-" + n);
+                       
+                       var month = dateObj.getUTCMonth()+1; //months from 1-12
+                       var day = dateObj.getUTCDate();
+                       var year = dateObj.getUTCFullYear();
+                       console.log("el mes" + month+"day:"+day+"year:"+year);
+                       $scope.list.push(month);
+                       newdate = year + "/" + monthNames[month - 1] + "/" + day;
+                       //if(day <= 31 && month<=meses[0]){
+                       //console.log("la fecha activos" + fecha + "mas" + newdate);
+
+                       $scope.meses.push(newdate);
+                                  
+                       // }else {
+                       //    var res = 0;
+                       //    while ($scope.data.length != 0) {
+                       //        res = res + $scope.data.pop();
+                       //    }
+                       //    console.log("res" + res);
+                       //}
+                   }
+
+
+               }
+               console.log($scope.meses);
+                //grafica
+               $(function () {
+                   Highcharts.chart('container', {
+                       chart: {
+                           type: 'areaspline'
+                       },
+                       title: {
+                           text: 'Nivel de contaminacion general',
+                           x: -20 //center
+                       },
+                       subtitle: {
+                           text: 'PM Material particulado',
+                           x: -20
+                       },
+                       xAxis: {
+                           categories: $scope.meses
+                           //categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                           //    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                       },
+                       yAxis: {
+                           title: {
+                               text: 'Valor Ug/m3'
+                           },
+                           plotLines: [{
+                               value: 0,
+                               width: 1,
+                               color: '#08080'
+                           }]
+                       },
+                       tooltip: {
+                           valueSuffix: '(Ug/m3)'
+                       },
+                       legend: {
+                           layout: 'vertical',
+                           align: 'right',
+                           verticalAlign: 'middle',
+                           borderWidth: 0
+                       },
+                       series: [{
+                           name: 'Quillacollo',
+                           data: $scope.data
+                           //data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                       //}]
+                       }],
+                       //{
+                       //    name: 'New York',
+                       //    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+                       //}, {
+                       //    name: 'Berlin',
+                       //    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+                       //}],
+                       //    name: 'London',
+                       //    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                       //}]
+                   });
+               });
+
+
+           }).
+              error(function (data, status, headers, config) {
+                  alert("Error busqueda de lista de rangos para los rangos");
+              })
+
+        })
+        app.controller("ChartCtrl", function ($scope, $http) {
+
+            var monthNames = ["January", "February", "March", "April", "May", "June",
+                     "July", "August", "September", "October", "November", "December"
+            ];
+            $scope.items = [];
+            $scope.meses = [];
+         
+            $http.get('http://localhost:3249/Api/ActivoApi').
+                success(function (data, status, headers, config) {
+                    $scope.activos = data;
+                    for (var i = 0 ; i < $scope.activos.length ; i++) {
+
+                        if ($scope.activos[i].Contaminante.Nombre == "PM") {
+         
+                            $scope.items.push($scope.activos[i].Concentracion)
+              
+                            var fecha = $scope.activos[i].Fecha;
+                          
+                            var dateObj = new Date(fecha);
+                            var month = dateObj.getUTCMonth() + 1; 
+                            var day = dateObj.getUTCDate();
+                            var year = dateObj.getUTCFullYear();
+
+                            newdate = year + "/" + monthNames[month-1] + "/" + day;
+                            
+                           // console.log("la fecha activos"+fecha+ "mas"+ newdate);
+                            var format = {
+                                month: 'short',
+                                Day: 'short'
+                              
+                            };
+                            var dateConvert = new Date(fecha).toLocaleDateString('en-ES', format);
+                           
+                            $scope.meses.push(newdate);
+                           
+                        }
+
+                    }
+
+                    Highcharts.chart('containerc', {
+                        chart: {
+                            type: 'spline'
+                        },
+                        title: {
+                            text: 'Material particulado PM10',
+                            x: -20 //center
+                        },
+                        subtitle: {
+                            text: 'PM material particulado',
+                            x: -20
+                        },
+                        xAxis: {
+                            categories: $scope.meses
+                            //categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                            //    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Valor Ug/m3'
+                            },
+                            plotLines: [{
+                                value: 0,
+                                width: 1,
+                                color: '#808080'
+                            }]
+                        },
+                        tooltip: {
+                            valueSuffix: '(Ug/m3)'
+                        },
+                        plotOptions: {
+                            spline: {
+                                lineWidth: 15,
+                                states: {
+                                    hover: {
+                                        lineWidth: 5
+                                    }
+                                },
+                                marker: {
+                                    enabled: false
+                                }
+                               
+                            }
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'middle',
+                            borderWidth: 0
+                        },
+                        
+                        series: [{
+                            name: 'Quillacollo',
+                            data: $scope.items
+                            //data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                        }]
+                        //}, {
+                        //    name: 'New York',
+                        //    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+                        //}, {
+                        //    name: 'Berlin',
+                        //    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+                        //}, {
+                        //    name: 'London',
+                        //    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                        //}]
+                    });
+
+
+                }).error(function (data, status, headers, config) {
+                    alert("para los rangos");
+                })
+        })// cierre de controlador
+        //to chart solid gauge
+        app.controller("MedidorGeneralCtrl", function ($scope, $http) { 
+            var listA = [];
+            var listP = [];
+            var listC = [];
+            $scope.concentracion = 0;
+            $scope.concentracionP = 0;
+            $scope.concentracionPT = 0
+            $http.get('http://localhost:3249/Api/NivelContaminacionApi')
+           .success(function (data, status, headers, config) {
+               $scope.niveles = data;
+               //console.log("json:" + $scope.niveles[0].Estacion.EstacionId);
+               for (var i = 0; i < $scope.niveles.length; i++) {
+                   if ($scope.niveles[i].Estacion.EstacionId==1) {
+                       listA.push($scope.niveles[i].Concentracion);
+                       //console.log("con:" + $scope.niveles[i].Concentracion);
+                   }
+                   if ($scope.niveles[i].Estacion.EstacionId == 2) {
+                       listP.push($scope.niveles[i].Concentracion);
+                       //console.log("con:" + $scope.niveles[i].Concentracion);
+                   }if ($scope.niveles[i].Estacion.EstacionId == 3) {
+                       listC.push($scope.niveles[i].Concentracion);
+                       //console.log("con:" + $scope.niveles[i].Concentracion);
+                   }
+                
+               }
+               $scope.concentracion = listA.pop();
+               $scope.concentracionP = listP.pop();
+               $scope.concentracionPT = listC.pop();
+               //console.log("" +$scope.concentracion);
+               var gaugeOptions = {
+
+                   chart: {
+                       type: 'solidgauge'
+                   },
+
+                   title: null,
+
+                   pane: {
+                       center: ['50%', '85%'],
+                       size: '140%',
+                       startAngle: -90,
+                       endAngle: 90,
+                       background: {
+                           backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                           innerRadius: '60%',
+                           outerRadius: '100%',
+                           shape: 'arc'
+                       }
+                   },
+
+                   tooltip: {
+                       enabled: false
+                   },
+
+                   // the value axis
+                   yAxis: {
+                       stops: [
+                          [0.1, '#55BF3B'], // green
+                          [0.16, '#55BF3B'],
+                         [0.17, '#FFFF00'],
+                         [0.18, '#FFFF00'],
+                          [0.20, '##F7FE2E'],
+                       [0.22, '#FFFF00'],
+                      [0.32, '#FFFF00'], //yellow 
+                     [0.35, '#FF0000'],//red
+                     [0.40, '#FF0000'],//red
+                    [0.49, '#FF0000'],//RED
+                     [0.51, '#B43104'], // RED
+                    [0.6, '#B43104'],
+                    [0.7, '#000000'],
+                    [0.8, '#000000'],
+                  [0.9, '#000000'] //BLACK
+                       ],
+                       lineWidth: 0,
+                       minorTickInterval: null,
+                       tickAmount: 4,
+                       title: {
+                           y: -70
+                       },
+                       labels: {
+                           y: 16
+                       }
+                   },
+
+                   plotOptions: {
+                       solidgauge: {
+                           dataLabels: {
+                               y: 5,
+                               borderWidth: 0,
+                               useHTML: true
+                           }
+                       }
+                   }
+               };
+               // The speed gauge
+               var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+                   yAxis: {
+                       min: 0,
+                       max: 300,
+                       title: {
+                           text: 'Medidor'
+                       }
+                   },
+
+                   credits: {
+                       enabled: false
+                   },
+
+                   series: [{
+                       name: 'Speed',
+                       data: [$scope.concentracion],
+                       dataLabels: {
+                           format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                               ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                                  '<span style="font-size:12px;color:silver">ug/m3</span></div>'
+                       },
+                       tooltip: {
+                           valueSuffix: ' km/h'
+                       }
+                      
+                   }]
+
+               }));
+
+
+              
+           }).error(function (data, status, headers, config) {
+               alert("No entra a la Api automatico");
+           })
+
+        })
+        // old method its to search by periods
+        app.controller("AutomaticoCtrl", function ($scope, $http) {
+            alert("hola automatico");
+            $scope.consultas = [
+                { id: 1, name: "horas" },
+                { id: 2, name: "Meses" },
+                { id: 3,name:"Dias"}
+            ]
+            $scope.datosPM = [];
+            $scope.mesesPM = [];
+            $scope.search = function () {
+                alert("entrando filterss");
+                var monthNames = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+                ];
+
+                $scope.lista = {};
+                $scope.data = [];
+                $scope.meses = [];
+                var Indata = { 'fechastart': $scope.fechastart, 'fecha': $scope.fecha };
+                $http.post('/AutomaticoPM/SearchByDatesA', Indata).then(
+                    function (dataActivos) {
+                        alert("entrando");
+                        //console.log("here json:" + dataVentas.data[0].Fecha);
+
+                        $scope.list = dataActivos.data;
+                        if ($scope.list.length > 0) {
+                            $scope.listaCopy = dataActivos.data;
+                            for (var i = 0; i < dataActivos.data.length; i++) {
+                                $scope.data.push(dataActivos.data[i].Concentracion);
+                                // console.log("concentracion:" + dataVentas.data[i].Concentracion);
+                                var dateString = dataActivos.data[i].Fecha.substr(6);
+                                var currentTime = new Date(parseInt(dateString));
+                                var month = currentTime.getMonth() + 1;
+                                var day = currentTime.getDate();
+                                var year = currentTime.getFullYear();
+                                var hour = currentTime.getHours();
+                                var mint = currentTime.getMinutes();
+                                var date = day + "/" + month + "/" + year;
+                                $scope.listaCopy[i].Fecha = date;
+                                console.log("ds;" + dateString);
+                                console.log("ct" + currentTime);
+                                console.log("fecha:" + date);
+                                $scope.meses.push(day + "/" + monthNames[month - 1] + "/" + year);
+                            }
+                        } else {
+                            alert(" No existen datos ese rango de fechas");
+                        }
+
+
+                        //for the chart
+                        Highcharts.chart('containerautomatico', {
+                            chart: {
+                                type: 'spline'
+                            },
+                            title: {
+                                text: 'Monitoreo por estacion: ' + $scope.list[0].Estacion.Name + ''
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            xAxis: {
+                                //type: 'datetime',
+
+                                categories: $scope.meses
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'unidades (ug/m3)'
+                                },
+                                minorGridLineWidth: 0,
+                                gridLineWidth: 0,
+                                alternateGridColor: null,
+                                plotBands: [{ // Light air
+                                    from: 0,
+                                    to: 50,
+                                    color: 'rgba(68, 170, 213, 0.1)',
+                                    label: {
+                                        text: 'Muy Bueno',
+                                        style: {
+                                            color: '#606060'
+                                        }
+                                    }
+                                }, { // Light breeze
+                                    from: 50,
+                                    to: 110,
+                                    color: 'rgba(0, 0, 0, 0)',
+                                    label: {
+                                        text: 'Aire Regular',
+                                        style: {
+                                            color: '#606060'
+                                        }
+                                    }
+                                }, { // Gentle breeze
+                                    from: 101,
+                                    to: 150,
+                                    color: 'rgba(68, 170, 213, 0.1)',
+                                    label: {
+                                        text: 'Malo',
+                                        style: {
+                                            color: '#606060'
+                                        }
+                                    }
+                                }, { // Moderate breeze
+                                    from: 151,
+                                    to: 200,
+                                    color: 'rgba(0, 0, 0, 0)',
+                                    label: {
+                                        text: 'Muy Malo',
+                                        style: {
+                                            color: '#606060'
+                                        }
+                                    }
+                                }, { // Fresh breeze
+                                    from: 201,
+                                    to: 300,
+                                    color: 'rgb(255, 112, 77)',
+                                    label: {
+                                        text: 'Extremadamente Malo',
+                                        style: {
+                                            color: '#606060'
+                                        }
+                                    }
+                                }],
+                                // { // High wind
+                                //    from: 14,
+                                //    to: 15,
+                                //    color: 'rgba(68, 170, 213, 0.1)',
+                                //    label: {
+                                //        text: 'High wind',
+                                //        style: {
+                                //            color: '#606060'
+                                //        }
+                                //    }
+                                //}]
+                            },
+                            tooltip: {
+                                valueSuffix: ' (ug/m3)'
+                            },
+                            plotOptions: {
+                                spline: {
+                                    lineWidth: 4,
+                                    states: {
+                                        hover: {
+                                            lineWidth: 5
+                                        }
+                                    },
+                                    marker: {
+                                        enabled: false
+                                    },
+
+                                }
+                            },
+                            series: [{
+                                name: 'PM(Material Particulado)',
+                                data: $scope.data
+                            }],
+                            //}, {
+                            //    name: 'Vik',
+                            //    data: [0, 0, 0.6, 0.9, 0.8, 0.2, 0, 0, 0, 0.1, 0.6, 0.7, 0.8, 0.6, 0.2, 0, 0.1, 0.3, 0.3, 0, 0.1, 0, 0, 0, 0.2, 0.1, 0, 0.3, 0, 0.1, 0.2, 0.1, 0.3, 0.3, 0, 3.1, 3.1, 2.5, 1.5, 1.9, 2.1, 1, 2.3, 1.9, 1.2, 0.7, 1.3, 0.4, 0.3]
+                            //}],
+                            navigation: {
+                                menuItemStyle: {
+                                    fontSize: '1px'
+                                }
+                            }
+                        });// end from chart
+
+
+                    },
+                    function (dataVentas) {
+                        alert("error ingrese filtros por favor");
+                    });
+            };
+        
+          
+        })// cierre de controller
+        // this is to hightchart stock
+        app.controller("shapectrl", function ($scope, $http) {
+
+            var monthNames = ["January", "February", "March", "April", "May", "June",
+         "July", "August", "September", "October", "November", "December"
+            ];
+
+            var databig = [];
+            var matriz = [];
+
+            $http.get('http://localhost:3249/Api/AutomaticoApi')
+                .success(function (data, status, headers, config) {
+                    $scope.venta = data;
+                    //console.log("json:" + $scope.venta[0].Fecha);
+                    var d = new Date($scope.venta[0].Fecha);
+                    var c = d.toLocaleString();//d.valueOf();
+
+                    //console.log("time" + c);
+                    for (var i = 0; i < $scope.venta.length; i++) {
+                        var event = new Date($scope.venta[i].Fecha);
+                        var ev = event.toLocaleString();
+                        var reshoras = $scope.venta[i].Fecha.substring(11, 16);
+                        var dateObj = new Date($scope.venta[i].Fecha);
+                        var month = dateObj.getUTCMonth() + 1; //months from 1-12
+                        var day = dateObj.getUTCDate();
+                        var year = dateObj.getUTCFullYear();
+                        var horas = dateObj.getHours() + ":" + dateObj.getMinutes();
+
+                        newdate = day + "/" + monthNames[month - 1] + "/" + year + "hora:" + reshoras;
+
+                        matriz[i] = [ev, $scope.venta[i].Concentracion];
+
+                    }
+                    // databig.push($scope.venta[0].Fecha, $scope.venta[0].Concentracion);
+                   // console.log(matriz);
+                    var currentDate = new Date($scope.venta[0].Fecha);
+                    currentDate = JSON.stringify(currentDate);
+                    currentDate = new Date(JSON.parse(currentDate));
+
+                   // console.log("current:" + currentDate.valueOf());
+                    Highcharts.stockChart('containerd', {
+                        animation: {
+                            duration: 2000,
+                            easing: 'swing'
+                        },
+                        rangeSelector: {
+                            selected: 1,
+                            enabled: false
+                        },
+
+                        title: {
+                            text: 'Nivel de contaminacion (PM)'
+
+                        },
+                        xAxis: {
+                            ordinal: true,
+                            type: 'datetime'
+                        },
+                        yAxis: {
+                            minPadding: 0.2,
+                            maxPadding: 0.2,
+                            title: {
+                                text: 'Valores',
+                                margin: 0.3,
+                                size:"10px",
+                            },
+                            labels: {
+                                format: '{value:.2f}'
+                            }
+
+                        },
+
+                        series: [{
+
+                            name: 'PM(ug/m3)',
+                            data: matriz,
+                            gapSize: 1,
+                            tooltip: {
+                                valueDecimals: 2,
+                               
+                            },
+                            shadow: {
+                                color: 'blue',
+                                width: 10,
+                                offsetX: 1,
+                                offsetY: 1
+                            },
+                            dataGrouping: {
+                                enabled: true,
+                                approximation: "open",
+                            }
+                        }],
+                        legend: {
+                            enabled:false
+                        },
+                        credits: {
+                            enabled: false
+                        }
+                    });
+
+                }).error(function (data, status, headers, config) {
+                    alert("No encuentra JSON para los rangos en monitor automatico");
+                })
+
+
+        })
+        // this is to PIE chart
+        app.controller("PieCtrl", function ($scope, $http) {
+
+            // Sample options for first chart
+            $(function () {
+                Highcharts.chart('containerPie', {
+                    chart: {
+                        type: 'pie',
+                        options3d: {
+                            enabled: true,
+                            alpha: 45
+                        }
+                    },
+                    title: {
+                        text: 'Contents of Highsoft\'s weekly fruit delivery'
+                    },
+                    subtitle: {
+                        text: '3D donut in Highcharts'
+                    },
+                    plotOptions: {
+                        pie: {
+                            innerSize: 100,
+                            depth: 45
+                        }
+                    },
+                    series: [{
+                        name: 'Delivered amount',
+                        data: [
+                            ['Bananas', 8],
+                            ['Kiwi', 3],
+                            ['Mixed nuts', 1],
+                            ['Oranges', 6],
+                            ['Apples', 8],
+                            ['Pears', 4],
+                            ['Clementines', 4],
+                            ['Reddish (bag)', 1],
+                            ['Grapes (bunch)', 1]
+                        ]
+                    }]
+                });
+            });
+        })// cierre de controller
+        // to search by filters
+
+        app.controller("activoctrl", function ($scope, $http) {
+           
+            $scope.search= function () {
+                var monthNames = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+                ];
+
+                $scope.lista = {};
+                $scope.data = [];
+                $scope.meses = [];
+                var Indata = { 'fechastart': $scope.fechastart, 'fecha': $scope.fecha };
+                $http.post('/ActivoPM/SearchByDates', Indata).then(
+                    function (dataActivos) {
+                        alert("entrando");
+                        //console.log("here json:" + dataVentas.data[0].Fecha);
+
+                        $scope.list = dataActivos.data;
+                       if($scope.list.length>0){
+                        $scope.listaCopy = dataActivos.data;
+                        for (var i = 0; i < dataActivos.data.length; i++) {
+                            $scope.data.push(dataActivos.data[i].Concentracion);
+                           // console.log("concentracion:" + dataVentas.data[i].Concentracion);
+                            var dateString = dataActivos.data[i].Fecha.substr(6);
+                            var currentTime = new Date(parseInt(dateString));
+                            var month = currentTime.getMonth() + 1;
+                            var day = currentTime.getDate();
+                            var year = currentTime.getFullYear();
+                            var hour = currentTime.getHours();
+                            var date = day + "/" + month + "/" + year;
+                            $scope.listaCopy[i].Fecha = date;
+                            console.log("ds;" + dateString);
+                            console.log("ct" + currentTime);
+                            console.log("fecha:" + date);
+                            $scope.meses.push(day + "/" + monthNames[month - 1] + "/" + year);
+                        }
+                       } else {
+                           alert(" No existen datos ese rango de fechas");
+                       }
+                        
+
+                        //for the chart
+                       // $(function () {
+                            Highcharts.chart('containerp', {
+                                chart: {
+                                    type: 'areaspline'
+                                },
+                                title: {
+                                    text: 'Nivel de contaminacion',
+                                    x: -20 //center
+                                },
+                                subtitle: {
+                                    text: 'PM Material particulado',
+                                    x: -20
+                                },
+                                xAxis: {
+                                    categories: $scope.meses
+                                    //categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                    //    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                                },
+                                yAxis: {
+                                    title: {
+                                        text: 'Valor Ug/m3'
+                                    },
+                                    plotLines: [{
+                                        value: 0,
+                                        width: 1,
+                                        color: '#808080'
+                                    }]
+                                },
+                                tooltip: {
+                                    valueSuffix: '(Ug/m3)'
+                                },
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'middle',
+                                    borderWidth: 0
+                                },
+
+                                series: [{
+                                    name: 'Quillacollo',
+                                    data: $scope.data,
+                                    shadow: {
+                                        color: 'black',
+                                        width: 10,
+                                        offsetX: 1,
+                                        offsetY: 1
+                                    }
+
+                                    //data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                                }]
+                                //}, {
+                                //    name: 'New York',
+                                //    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+                                //}, {
+                                //    name: 'Berlin',
+                                //    data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+                                //}, {
+                                //    name: 'London',
+                                //    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                                //}]
+                            });
+
+                     //   });
+
+                    },
+                    function (dataVentas) {
+                        alert("error not enter");
+                    });
+            };
+
+
+
+        })//close  the controller;
+
+        app.controller("EstacionesCtrlNo2", function ($scope, $http) {
+
+            $scope.datosCi = [];
+            $scope.MesesCi = [];
+            $scope.datosTe = [];
+            $scope.MesesTe = [];
+            $scope.dataPt = [];
+            $scope.mesesPt = [];
+            $http.get('http://localhost:3249/Api/PasivoApi').
+           success(function (data, status, headers, config) {
+               $scope.pasivos = data;
+               //console.log($scope.pasivos[0]);
+               for (var i = 0; i < $scope.pasivos.length; i++) {
+                   //console.log($scope.pasivos[i].Concentracion);
+                   //console.log($scope.pasivos[i].Estacion)
+                   if ($scope.pasivos[i].Contaminante.Nombre == "NO2" && $scope.pasivos[i].Estacion == "Potreros") {
+                       //console.log("es NO2");
+                       $scope.dataPt.push($scope.pasivos[i].Concentracion);
+                       // para los meses
+                       var fecha = $scope.pasivos[i].Fecha;
+
+                       //console.log("estaciones Terminal " + fecha);
+                       $scope.mesesPt.push(fecha);
+                   }
+                   if ($scope.pasivos[i].Contaminante.Nombre == "NO2" && $scope.pasivos[i].Estacion == "Terminal") {
+                       $scope.datosTe.push($scope.pasivos[i].Concentracion);
+                       // para los meses
+                       var fecha = $scope.pasivos[i].Fecha;
+
+                       //console.log("estaciones Terminal " + fecha);
+                       $scope.MesesTe.push(fecha);
+
+                   }
+                   if ($scope.pasivos[i].Contaminante.Nombre == "NO2" && $scope.pasivos[i].Estacion == "Circunvalacion") {
+                       $scope.datosCi.push($scope.pasivos[i].Concentracion);
+                       // para los meses
+                       var fecha = $scope.pasivos[i].Fecha;
+
+                      // console.log(" ingresando ..... estaciones circunvalacion ");
+                       $scope.MesesCi.push(fecha);
+
+                   }
+
+               }
+               // grficaaaaaaaaaaaaaaaaaaaaasssssssssssssss
+
+              
+               Highcharts.chart('containerNo2', {
+                    chart: {
+                       type: 'spline'
+                         },
+                       title: {
+                           text: 'Pasivo',
+                           x: -20 //center
+                       },
+                       subtitle: {
+                           text: 'NO2 Dioxido de nitrogeno',
+                           x: -20
+                       },
+                       xAxis: {
+                           categories: $scope.mesesPt
+                           //categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                           //    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                       },
+                       yAxis: {
+                           title: {
+                               text: 'Valor Ug/m3'
+                           },
+                           plotLines: [{
+                               value: 0,
+                               width: 1,
+                               color: '#808080'
+                           }]
+                       },
+                       tooltip: {
+                           valueSuffix: '(Ug/m3)'
+                       },
+                       legend: {
+                           layout: 'vertical',
+                           align: 'right',
+                           verticalAlign: 'middle',
+                           borderWidth: 0
+                       },
+                       series: [{
+                           name: 'Potreros',
+                           data: $scope.dataPt
+                           //data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                                }, {
+                           name: 'Terminal',
+                           data: $scope.datosTe
+                                },
+                       
+                            {
+                           name: 'Circunvalacion',
+                           data:  $scope.datosCi
+                           }], 
+                       //{
+                       //    name: 'London',
+                       //    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                       //}]
+                   });
+
+           }).
+              error(function (data, status, headers, config) {
+                  alert("Error busqueda de lista de rangos para los rangos");
+              })
+
+        })
+        //to reportes
+        app.controller("dropdownctrl", function ($scope, $http) {
+            var monthNames = ["January", "February", "March", "April", "May", "June",
+   "July", "August", "September", "October", "November", "December"
+            ];
+
+            $scope.lista = {};
+            
+            $http.get("http://localhost:3249/Api/EstacionApi").then(function (responses) {
+                $scope.StationMas = responses.data;
+                //console.log($scope.DeptMas);
+                $scope.station = $scope.StationMas;
+                $scope.txt = "selecione";
+                //console.log("Hi"+$scope.DeptMas[0].Concentracion);
+            });
+
+            $scope.OnDeptChange = function () {
+                $http.post("/ActivoPM/SearchByStation", $scope.station).then(function (responses) {
+                    //$scope.DesigMas = responses.data;
+                    //console.log("here"+$scope.DesigMas[0].Fecha);
+                    //$scope.Designation = $scope.DesigMas[0];
+                    $scope.data = [];
+                    $scope.meses = [];
+                    $scope.list = responses.data;
+                    //$scope.listaCopy = responses.data;
+                    console.log("ressss" + responses.data.length);
+                   if(responses.data.length>0){
+                    for (var i = 0; i < responses.data.length; i++) {
+                        $scope.data.push(responses.data[i].Concentracion);
+                        // console.log("concentracion:" + dataVentas.data[i].Concentracion);
+                        var dateString = responses.data[i].Fecha.substr(6);
+                        var currentTime = new Date(parseInt(dateString));
+                        var month = currentTime.getMonth() + 1;
+                        var day = currentTime.getDate();
+                        var year = currentTime.getFullYear();
+                        var hour = currentTime.getHours();
+                        var date = day + "/" + month + "/" + year;
+                       // $scope.listaCopy[i].Fecha = date;
+                        //console.log("ds;" + dateString);
+                        //console.log("ct" + currentTime);
+                        //console.log("fecha:" + date);
+                        $scope.meses.push(day + "/" + monthNames[month - 1] + "/" + year);
+                    }
+                   } else {
+                       alert("No existes datos en esta estacion");
+                   }
+
+                    // init chart
+                    Highcharts.chart('containerstation', {
+                        chart: {
+                            type: 'spline'
+                        },
+                        title: {
+                            text: 'Monitoreo por estacion: '+responses.data[0].Estacion.Name+''
+                        },
+                        subtitle: {
+                            text: ''
+                        },
+                        xAxis: {
+                            //type: 'datetime',
+                           
+                            categories: $scope.meses
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'unidades (ug/m3)'
+                            },
+                            minorGridLineWidth: 0,
+                            gridLineWidth: 0,
+                            alternateGridColor: null,
+                            plotBands: [{ // Light air
+                                from: 0,
+                                to: 50,
+                                color: 'rgba(68, 170, 213, 0.1)',
+                                label: {
+                                    text: 'Aire muy bueno',
+                                    style: {
+                                        color: '#606060'
+                                    }
+                                }
+                            }, { // Light breeze
+                                from: 50,
+                                to: 110,
+                                color: 'rgba(0, 0, 0, 0)',
+                                label: {
+                                    text: 'Aire Regular',
+                                    style: {
+                                        color: '#606060'
+                                    }
+                                }
+                            }, { // Gentle breeze
+                                from:101,
+                                to: 150,
+                                color: 'rgba(68, 170, 213, 0.1)',
+                                label: {
+                                    text: 'Aire Malo',
+                                    style: {
+                                        color: '#606060'
+                                    }
+                                }
+                            }, { // Moderate breeze
+                                from: 151,
+                                to: 200,
+                                color: 'rgba(0, 0, 0, 0)',
+                                label: {
+                                    text: 'Muy malo',
+                                    style: {
+                                        color: '#606060'
+                                    }
+                                }
+                            }, { // Fresh breeze
+                                from: 201,
+                                to: 300,
+                                color: 'rgb(255, 112, 77)',
+                                label: {
+                                    text: 'Extremadamente Malo',
+                                    style: {
+                                        color: '#606060'
+                                    }
+                                }
+                            }], 
+                            // { // High wind
+                            //    from: 14,
+                            //    to: 15,
+                            //    color: 'rgba(68, 170, 213, 0.1)',
+                            //    label: {
+                            //        text: 'High wind',
+                            //        style: {
+                            //            color: '#606060'
+                            //        }
+                            //    }
+                            //}]
+                        },
+                        tooltip: {
+                            valueSuffix: ' m/s'
+                        },
+                        plotOptions: {
+                            spline: {
+                                lineWidth: 4,
+                                states: {
+                                    hover: {
+                                        lineWidth: 5
+                                    }
+                                },
+                                marker: {
+                                    enabled: false
+                                },
+                               
+                            }
+                        },
+                        series: [{
+                            name: 'PM Activo',
+                            data: $scope.data
+                        }],
+                        //}, {
+                        //    name: 'Vik',
+                        //    data: [0, 0, 0.6, 0.9, 0.8, 0.2, 0, 0, 0, 0.1, 0.6, 0.7, 0.8, 0.6, 0.2, 0, 0.1, 0.3, 0.3, 0, 0.1, 0, 0, 0, 0.2, 0.1, 0, 0.3, 0, 0.1, 0.2, 0.1, 0.3, 0.3, 0, 3.1, 3.1, 2.5, 1.5, 1.9, 2.1, 1, 2.3, 1.9, 1.2, 0.7, 1.3, 0.4, 0.3]
+                        //}],
+                        navigation: {
+                            menuItemStyle: {
+                                fontSize: '1px'
+                            }
+                        }
+                    });// end from chart
+
+
+                }).error(function (responses) {
+                    alert("Error busqueda de lista de rangos para los rangos");
+                });
+            }
+          
+        })
+        // to factory to sear 
+        app.factory('TeacherService', ['$http', function ($http) {
+
+            var urlBase = 'http://localhost:3249/Api';
+
+            var TeacherService = {};
+
+            TeacherService.getSubjects = function () {
+
+                return $http.get(urlBase + '/ActivoPMApi');
+
+            };
+
+        }])
+
+        // para el mapa
+        app.controller("MapasCtrl", function ($scope, $http) {
+
+            $http.get("http://localhost:3249/Api/EstacionApi").then(function (responses) {
+                $scope.StationMas = responses.data;
+                //console.log($scope.DeptMas);
+                $scope.station = $scope.StationMas;
+                $scope.txt = "selecione";
+                console.log($scope.station);
+                var marker;
+                var quilla = { lat: -17.40287462, lng: -66.28130722 };
+                var mapOptions = {
+                    center: new google.maps.LatLng(-17.40287462, -66.28130722),
+                    zoom: 12,
+                    mapTypedId: google.maps.MapTypeId.ROADMAP
+                };
+                //initializing map and mapopotions
+                $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions)
+
+                $scope.infowindow = new google.maps.InfoWindow();
+                for (var i = 0; i < $scope.station.length; i++) {
+
+                    var data = $scope.station[i];
+                    console.log("sdasdasdsadsadasdsa" + data);
+                    var mylatlng = new google.maps.LatLng(data.lat, data.lng);
+                    console.log(mylatlng)
+
+                    var marker = new google.maps.Marker({
+                        position: mylatlng,
+                        map: $scope.map,
+                        title: data.title,
+                        icon: 'http://cdn.webiconset.com/map-icons/images/pin2.png'
+                    });
+                    //console.log(" pruebita" + markers[i].Description);
+
+                    google.maps.event.addListener(marker, 'click', function () {
+                        $('#myModal').modal('show');
+                        //$('#topMenu').hide()
+                        //$('#topMenu').css('z-index', '0');
+
+                    });
+                }
+            });
+
+            
+
+        })
+
+        app.controller("BasicCtrl", function ($scope, $http) {
+
+            $(function () {
+                Highcharts.chart('containerBasic', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Monthly Average Rainfall'
+                    },
+                    subtitle: {
+                        text: 'Source: WorldClimate.com'
+                    },
+                    xAxis: {
+                        categories: [
+                            'Jan',
+                            'Feb',
+                            'Mar',
+                            'Apr',
+                            'May',
+                            'Jun',
+                            'Jul',
+                            'Aug',
+                            'Sep',
+                            'Oct',
+                            'Nov',
+                            'Dec'
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Rainfall (mm)'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series: [{
+                        name: 'Tokyo',
+                        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+                    }, {
+                        name: 'New York',
+                        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+                    }, {
+                        name: 'London',
+                        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+                    }, {
+                        name: 'Berlin',
+                        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+                    }]
+                });
+            });
+        })
+    </script>
+
+</body>
+
+</html>
+
+
+
+<script>
+
+    $(document).ready(function () {
+        $(".sparkline_one").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6, 7, 5, 4, 3, 5, 6], {
+            type: 'bar',
+            height: '40',
+            barWidth: 9,
+            colorMap: {
+                '7': '#a1a1a1'
+            },
+            barSpacing: 2,
+            barColor: '#26B99A'
+        });
+
+        $(".sparkline_two").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6, 7, 5, 4, 3, 5, 6], {
+            type: 'line',
+            width: '200',
+            height: '40',
+            lineColor: '#26B99A',
+            fillColor: 'rgba(223, 223, 223, 0.57)',
+            lineWidth: 2,
+            spotColor: '#26B99A',
+            minSpotColor: '#26B99A'
+        });
+    });
+
+
+</script>
+<style>
+    .panel-success>.panel-heading {
+    color: #ffffff;
+    background-color: #26b99a;
+    border-color: #26b99a;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #26b99a;
+}
+.side-nav>li>ul>li>a {
+    display: block;
+    padding: 10px 15px 10px 38px;
+    text-decoration: none;
+    color: #26b99a;
+}
+</style>

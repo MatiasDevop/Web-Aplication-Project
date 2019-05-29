@@ -1,0 +1,62 @@
+﻿@model MVClog.Models.RangoICA
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>RangoICA</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ValorMin)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ValorMin)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ValorMax)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ValorMax)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Color)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Color)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Calificativo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Calificativo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Riesgo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Riesgo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Efectos)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Efectos)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

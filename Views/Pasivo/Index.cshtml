@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MVClog.Models.Pasivo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<h2>Medidor Pasivo</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Concentracion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contaminante.Nombre)
+        </th>
+        <th>
+            Estacion
+            @*@Html.DisplayNameFor(model => model.Estacion.Name)*@
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaRegistro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Concentracion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contaminante.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estacion.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PasivoID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PasivoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PasivoID })
+        </td>
+    </tr>
+}
+
+</table>

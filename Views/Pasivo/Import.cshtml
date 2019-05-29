@@ -1,0 +1,69 @@
+﻿@model MVClog.Models.Pasivo
+
+@{
+    ViewBag.Title = "Import";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<div class="container">
+    <div class="alert alert-success" role="alert">Panel Para monitoreo Pasivo NO2 y Ozono</div>
+
+    @using (Html.BeginForm("Importexcel", "Pasivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        if (@Model != null)
+        {
+
+
+            <form>
+                <tr>
+                    <td>Formato del Archivo Excel Codigo  Descripcion Unidad  en la Hoja1</td>
+                </tr>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FechaRegistro, "Fecha de Registro")
+                </div>
+                <div class="form-group">
+                    <input type="date" name="FechaRegistro" value=" " />
+                </div>
+
+                <tr><td>Archivo de Excel </td><td><input type="file" id="FileUpload1" name="FileUpload1" class="btn btn-default" /></td></tr>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ContaminanteID, "Contaminante")
+                </div>
+                <div class="form-group">
+                    @Html.DropDownList("ContaminanteID", null, new { @class = "btn btn-default btn-block btn-lg dropdown-toggle" })
+
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EstacionId, "Estacion")
+                </div>
+                <div class="form-group">
+                    @Html.DropDownList("EstacionId", null, new { @class = "btn btn-default btn-block btn-lg dropdown-toggle" })
+
+                </div>
+                <div class="form-group">
+                    <tr><td></td><td><input type="submit" id="Submit" name="Submit" value="Importar" class="btn btn-primary" /></td></tr>
+                </div>
+            </form>
+        }
+        else
+        {
+            <h1><p class="bg-danger" id="error">@ViewBag.ErrorMessage</p></h1>
+        }
+    }
+</div>
+
+<script>
+
+
+        var error = document.getElementById("error");
+        if (error==null) {
+            alert("Bienvenido senor");
+        } else {
+
+            alert(error.innerHTML);
+        }
+
+
+
+</script>

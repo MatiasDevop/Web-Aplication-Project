@@ -1,0 +1,44 @@
+﻿@model MVClog.Models.Contaminante
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Contaminante</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ValorLimite)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ValorLimite)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Unidades)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Unidades)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ContaminanteID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="DatosAPP">
+<head>
+    <meta charset="utf-8" />
+    <title>Red Monica Quillacollo</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Content/js/jquery.min.js"></script>
+ 
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/templatemo_style.css" rel="stylesheet" />
+    @*<link href="~/Content/css/colorbox.css" rel="stylesheet" />*@
+    <link href="~/Content/Tooltipster/css/tooltipster.bundle.min.css" rel="stylesheet" />
+    <link href="~/Content/Tooltipster/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
+   
+</head>
+<body>
+    <div class="container">
+        <section class="nav navbar-nav navbar-right">
+            @*<div ng-repeat="dato in datos">
+                <h1>{{dato.Concentracion}}</h1>
+            </div>*@
+            
+            <ul>
+                @*<li>@Html.Partial("_LoginPartial")</li>*@
+                <li><a href="#">@Html.ActionLink("Administrador", "Index", "Admin")</a></li>
+            </ul>
+        </section>
+    </div>
+   
+    <div class="">
+        <div class="templatemo-top-bar" id="templatemo-top">
+            <div class="container">
+                <div class="subheader">
+                    <div id="phone" class="pull-left">
+                        <img src="~/Content/images/phone.png" alt="phone" />
+                        090-080-0110
+                    </div>
+                    <div id="email" class="pull-right">
+                        <img src="~/Content/images/email.png" alt="email" />
+                        info@redmonica.com
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="templatemo-top-menu" id="topMenu">
+            <div class="container">
+                <!-- Static navbar -->
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a href="#" class="navbar-brand"><img src="~/Content/images/icon.png" alt="Urbanic Template" title="Urbanic Template" /></a>
+                        </div>
+                        <div class="navbar-collapse collapse" id="templatemo-nav-bar">
+
+                            <ul class="nav navbar-nav navbar-right" style="margin-top: 40px;">
+                                <li class="active"><a href="#templatemo-top">PRINCIPAL</a></li>
+                                <li><a href="#templatemo-about">QUILLACOLLO</a></li>
+
+                                <li><a href="#templatemo-portfolio">ESTACIONES</a></li>
+
+                                <li><a href="#templatemo-contact">CONTACTOS</a></li>
+                                @*<li><a href="#">ADMIN</a></li>*@
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div><!--/.container-fluid -->
+                </div><!--/.navbar -->
+            </div> <!-- /container -->
+        </div>
+
+
+        @RenderBody()
+
+    </div>
+  
+   
+   
+    @Scripts.Render("~/bundles/jquery")
+
+    @RenderSection("scripts", required: false)
+   
+
+</body>
+</html>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+@*<script src="~/Scripts/angular.min.js"></script>*@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+<script src="~/Content/js/bootstrap.min.js"></script>
+<script src="~/Content/js/stickUp.min.js"></script>
+<script src="~/Content/js/jquery.colorbox-min.js"></script>
+<script src="~/Content/js/templatemo_script.js"></script>
+<script src="~/Content/Tooltipster/js/tooltipster.bundle.min.js"></script>
+
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBck-3uNAjfPcOQX1GIKp7nyvjepgNuXA&libraries=places&sensor=false"></script> 
+<script>
+   
+    var aux = 0;
+    // este es que funciona consumir APis.
+    var app = angular.module("DatosAPP", []);
+    app.controller("datosController", function ($scope, $http) {
+        $scope.datos = [];
+        $scope.tam = {};
+        $scope.concentracion = 0;
+        $scope.contaminanteTipo = "";
+        $scope.calificativo = "";
+        $scope.recomend = "";
+        $scope.riesgo = "";
+
+        $http.get('http://localhost:3249/Api/RangoICAAPi').
+        success(function (data, status, headers, config) {
+            $scope.rangos = data;
+            console.log($scope.rangos[0].Calificativo);
+
+
+                    }).
+                error(function (data, status, headers, config) {
+                    alert("There is not rangos");
+                })
+       
+
+        $http.get('http://localhost:3249/Api/NivelContaminacionApi').
+            success(function (data, status, headers, config) {
+                $scope.datos = data;
+                var list = [];
+                var last = [];
+                //console.log("Entrando con angular" + $scope.datos[0].Concentracion);
+                $scope.tam = $scope.datos.length;
+                console.log($scope.datos);
+                for (var i = 0; i < $scope.datos.length; i++) {
+                    if ($scope.datos[i].Estacion.EstacionId == 1) {
+                        console.log("her" + $scope.datos[i].Estacion.EstacionId);
+                        list.push($scope.datos[i]);
+                    }
+                }
+                last.push(list.pop());
+                $scope.concentracion = last[0].Concentracion;//$scope.datos[$scope.tam - 1].Concentracion;
+                console.log("concen:" + $scope.concentracion);
+               // console.log(list.pop());
+                $scope.contaminanteTipo = last[0].Contaminante;
+                console.log("dd"+$scope.contaminanteTipo);
+                //$scope.datos[$scope.tam - 1].Contaminante;
+                $scope.recomend = last[0].Recomendacion;//$scope.datos[$scope.tam - 1].Recomendacion;
+                $scope.calificativo = last[0].Calificativo;//$scope.datos[$scope.tam - 1].Calificativo;
+                if ($scope.concentracion <= 50) {
+                    $('#reco').css('background', '#1F9A08');
+                    $('#reco').css('color', 'white');
+                }
+                if ($scope.concentracion > 50 && $scope.concentracion <= 100) {
+                    $('#reco').css('background', '#FBFB05');
+                    $('#reco').css('color', 'black');
+                    
+                }
+                if ($scope.concentracion > 101 && $scope.concentracion <= 150) {
+                    console.log("pintandosadasdsadasdasd ++ 101");
+                    $('#reco').css('background', 'red');
+                    $('#reco').css('color', '#FFFFFF');
+                    //document.getElementsByClassName("recomendacion").style.backgroundColor = "black";
+                }
+                if ($scope.concentracion > 151 && $scope.concentracion <= 300) {
+                    console.log("pintandosadasdsadasdasd");
+                    $('#reco').css('background', '#b33c00');
+                    $('#reco').css('color', 'white');
+                    $('#reco').css('font-size', '55px');
+                }
+                if ($scope.concentracion >= 301) {
+                    $('#reco').css('background', '#0D0D0C');
+                    $('#reco').css('color', 'white');
+
+                }
+                //for (var i = 0; i < $scope.datos.length; i++) {
+                //    if($scope.datos[i].Color == "verde")
+                //}
+                for (var i = 0; i < $scope.rangos.length; i++) {
+                    if ($scope.concentracion <= $scope.rangos[i].ValorMax) {
+                        console.log( $scope.rangos);
+                        $scope.calificativo = $scope.rangos[i].Calificativo;
+                        $scope.recomend = $scope.rangos[i].Efectos;
+                        $scope.riesgo = $scope.rangos[i].Riesgo;
+                        console.log($scope.calificativo);
+                        console.log("recomennnnnnn"+$scope.recomend);
+                        i = $scope.rangos.length;
+                    }
+                }
+
+            }).
+        error(function (data, status, headers, config) {
+            alert("ANgular not working");
+        })
+        console.log("aux" + aux);
+        // para los rangos
+      
+     
+        //function buscarUltimo() {
+        //    for (var i = 0; i < $cope.datos.length; i++) {
+        //        $scope.concentracion=10;
+        //    }
+        //}
+
+       
+       
+
+    })
+    // para el mapa
+    app.controller("MapasCtrl", function ($scope, $http) {
+       
+        //function initMap() {
+            var markers = [
+                    {
+                        "title": "Potreros",
+                        "lat": -17.31850911369314,
+                        "lng": -66.31069859867239,
+                        "Description": "MOnitoreo pasivo"
+
+                    }, {
+
+                        "title": "Circunvalacion",
+                        "lat": -17.401502758673747,
+                        "lng": -66.27462959368131,
+                        "Description": "MOnitoreo pasivo"
+                    },
+                   {
+
+                       "title": "Zuares miranda",
+                       "lat": -17.385588423766034,
+                       "lng": -66.28143382082271,
+                       "Description": "MOnitoreo pasivo"
+                   },
+                   {
+
+                       "title": "Terminal",
+                       "lat": -17.392946825799555,
+                       "lng": -66.27302670465724,
+                       "Description": "MOnitoreo pasivo"
+                   },
+                        {
+
+                            "title": "Capitan Arsabe",
+                            "lat": -17.38955689889783,
+                            "lng": -66.28555583993148,
+                            "Description": "MOnitoreo pasivo"
+                        },
+                     {
+
+                         "title": "Calvario",
+                         "lat": -17.406082582861508,
+                         "lng": -66.28279370079326,
+                         "Description": "MOnitoreo pasivo"
+                     },
+                      {
+
+                          "title": "KM11",
+                          "lat": -17.38605530774336,
+                          "lng": -66.25952768365096,
+                          "Description": "MOnitoreo pasivo"
+                      }];
+            var marker;
+            var quilla = { lat: -17.40287462, lng: -66.28130722 };
+            var mapOptions = {
+                center: new google.maps.LatLng(-17.40287462, -66.28130722),
+                zoom: 12,
+                mapTypedId: google.maps.MapTypeId.ROADMAP
+            };
+            //initializing map and mapopotions
+            $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions)
+
+           $scope.infowindow = new google.maps.InfoWindow();
+            for (var i = 0; i < markers.length; i++) {
+
+                var data = markers[i]
+                console.log("sdasdasdsadsadasdsa"+data);
+                var mylatlng = new google.maps.LatLng(data.lat, data.lng);
+                console.log(mylatlng)
+
+                var marker = new google.maps.Marker({
+                    position: mylatlng,
+                    map: $scope.map,
+                    title: data.title,
+                    icon: 'http://cdn.webiconset.com/map-icons/images/pin2.png'
+                });
+                //console.log(" pruebita" + markers[i].Description);
+
+                google.maps.event.addListener(marker, 'click', function () {
+                    $('#myModal').modal('show');
+                    //$('#topMenu').hide()
+                    //$('#topMenu').css('z-index', '0');
+
+                });  
+            }
+
+    })
+
+</script>
+<style>
+    .recomendacion:hover{
+         width: 280px;
+    height: 280px;
+    }
+    .recomendacion{
+         width: 177px;
+    height: 250px;
+    background: red;
+    -webkit-transition: width 2s, height 4s; /* For Safari 3.1 to 6.0 */
+    transition: width 2s, height 4s;
+    }
+  #map {
+        height: 400px;
+        width: 500px;
+       }
+  #map h1{
+      color:black;
+  }
+    #rigth1{
+        /*background-color:#FE2E2E;*/
+            margin-right: -145px
+    }
+    #btnica{
+      border-radius:15px;
+    }
+    #btnanimate{
+
+margin-top:12px;
+ 
+    /*//border: none;*/
+    /*color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;*/
+   
+
+    }
+
+
+	#menuica{
+		background-color: #BDBDBD;
+      
+	}
+	#menuverde{
+		 background-color: #04B404;
+	}
+	#regular{
+		background-color: #F7FE2E;
+	}
+	#mala{
+	background-color: #FE2E2E;
+	color: 	white;
+	}
+	#muymala{
+		background-color: #8A4B08;
+		color: 	white;
+	}
+	#remala{
+		background-color: #424242;
+		color: 	white;
+	}
+    .navbar-nav>li {    
+    margin-left: 12px;
+}
+
+
+</style>

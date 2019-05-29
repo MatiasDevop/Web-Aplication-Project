@@ -1,0 +1,56 @@
+﻿@model MVClog.Models.AutomaticoPM
+
+@{
+    ViewBag.Title = "Import";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+    <div class="container">
+        <div class="alert alert-success" role="alert">Panel estacionamiento Automatico Material particulado</div>
+        <div class="container">
+            @using (Html.BeginForm("Importexcel", "AutomaticoPM", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <form>
+                    <tr>
+                        <td>Formato del Archivo Excel Codigo  Descripcion Unidad  en la Hoja1</td>
+
+                    </tr>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FechaRegistro, "Fecha de Registro")
+                    </div>
+                    <div class="form-group">
+                        <input type="date" name="FechaRegistro" value=" " />
+                    </div>
+                    <tr><td>Archivo de Excel </td><td><input type="file" id="FileUpload1" name="FileUpload1" class="btn btn-default" /></td></tr>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ContaminanteID, "Contaminante")
+                    </div>
+                    <div class="form-group">
+                    @Html.DropDownList("ContaminanteID", null, new { @class = "btn btn-default btn-block btn-lg dropdown-toggle" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EstacionId, "Estacion")
+                    </div>
+                    <div class="form-group">
+                        @Html.DropDownList("EstacionId", null, new { @class = "btn btn-default btn-block btn-lg dropdown-toggle" })
+
+                    </div>
+                    <div class="form-group">
+                        <tr><td></td><td><input type="submit" id="Submit" name="Submit" value="Importar" class="btn btn-primary" /></td></tr>
+                    </div>
+                </form>
+            }
+            <div>
+                @Html.ActionLink("volver atras", "Index", "Admin")
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+

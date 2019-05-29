@@ -1,0 +1,93 @@
+﻿@model IEnumerable<MVClog.Models.Role>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create", null, null, new { id = "btnCreate", @class = "btn btn-primary" })
+</p>
+<table class="table table-hover table-bordered">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.RoleName)*@RoleName
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RoleID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RoleID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RoleID })
+        </td>
+    </tr>
+}
+
+</table>
+<div id='myModal' class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+           //Optional: turn the chache off
+            $.ajaxSetup({ cache: false });
+
+            $('#btnCreate').on("click",function () {
+                $('#myModalContent').load(this.href, function () {
+                $('#myModal').modal({
+                    //backdrop: 'static',
+                    keyboard: true
+                    }, 'show');
+            bindForm(this);
+            });
+
+            return false;
+                });
+         });
+
+
+    function bindForm(dialog) {
+            $('form', dialog).submit(function () {
+            if (!$("form").valid()) {
+              return true;
+            }
+        $.ajax({
+        url: this.action,
+        type: this.method,
+        data: $(this).serialize(),
+        success: function (result) {
+
+            if (result.success) {
+                $('#myModal').modal('hide');
+                $('#replacetarget').load(result.url)
+                Refresh:
+                //como f5 actualiza
+                location.reload();
+            }
+            else {
+            $('#myModalContent').html(result);
+            bindForm(dialog);
+
+         }
+       }
+   });
+    return false;
+  });
+}
+    </script>
+}
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>

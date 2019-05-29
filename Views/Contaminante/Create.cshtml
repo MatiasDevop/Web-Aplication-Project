@@ -1,0 +1,131 @@
+﻿@model MVClog.Models.Contaminante
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Contaminante</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nombre)
+        </div>
+        <div class="editor-label">
+            <input type="text" class="form-control input-lg" id="exampleInputName2" name="Nombre" value="@Model.Nombre" placeholder="tipo Contaminante">
+            @*@Html.EditorFor(model => model.Nombre)*@
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Descripcion)
+        </div>
+        <div class="editor-field">
+            <input type="text" class="form-control input-lg" id="exampleInputName2" name="Descripcion" value="@Model.Descripcion" placeholder="Descripcion de contaminante">
+            @*@Html.EditorFor(model => model.Descripcion)*@
+            @Html.ValidationMessageFor(model => model.Descripcion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ValorLimite)
+        </div>
+        <div class="editor-field">
+            <input type="number" class="form-control input-lg" id="exampleInputName2" name="ValorLimite" value="@Model.ValorLimite" placeholder="Limite permisible">
+            @*@Html.EditorFor(model => model.ValorLimite)*@
+            @Html.ValidationMessageFor(model => model.ValorLimite)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Unidades)
+        </div>
+        <div class="editor-field">
+            <input type="text" class="form-control input-lg" id="exampleInputName2" name="Unidades" value="@Model.Unidades" placeholder="Unidades de medida">
+            @*@Html.EditorFor(model => model.Unidades)*@
+            @Html.ValidationMessageFor(model => model.Unidades)
+        </div>
+
+        <p>
+            <input type="submit" class="btn btn-green" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+
+
+
+
+
+
+@*@model MVClog.Models.Contaminante
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Contaminante</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Descripcion)
+            @Html.ValidationMessageFor(model => model.Descripcion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ValorLimite)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ValorLimite)
+            @Html.ValidationMessageFor(model => model.ValorLimite)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Unidades)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Unidades)
+            @Html.ValidationMessageFor(model => model.Unidades)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

@@ -1,0 +1,67 @@
+﻿@model MVClog.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+            <h2>Usar cuenta para ingresar por favor</h2>
+
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+
+                            @*<form>*@
+                            @*<legend>Log in Form</legend>*@
+                            @*<ol>*@
+                            @*<li>*@
+                            @*@if (Model != null)
+                                {*@
+                          <h2>  @Html.LabelFor(m => m.UserName)</h2>
+                            @*<input type="text" name="UserName" value="@Model.UserName" />*@
+                            @Html.TextBoxFor(m => m.UserName)
+                            @Html.ValidationMessageFor(m => m.UserName)
+
+                            @*}*@
+                            @*</li>*@
+                            @*<li>*@
+                            @*@if(Model != null)
+                                {*@
+                            <h2> @Html.LabelFor(m => m.Password)</h2>
+                            @*<input type="password" name="Password" value="@Model.Password" />*@
+                            @Html.PasswordFor(m => m.Password)
+                            @Html.ValidationMessageFor(m => m.Password)
+
+                            @*}*@
+                            @*</li>*@
+                            @*<li>*@
+
+                            @*@Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)*@
+
+                            @*</li>*@
+                            @*</ol>*@
+                            <br>
+                            <input type="submit" id="login-button" value="Ingresar" />
+
+                            <p>
+                                @*@Html.ActionLink("Register", "Create", "User")*@ Si no tinenes cuenta contactenos <a href="@Url.Action("Index","User")" style="color:white;">aqui</a>.
+                            </p>
+
+                            @*</form>*@
+
+                        }
+
+@*@section Styles {
+    <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet" type="text/css" />
+}*@
+
+
+@*<section class="social" id="socialLoginForm">
+    <h2>Use another service to log in.</h2>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>*@
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

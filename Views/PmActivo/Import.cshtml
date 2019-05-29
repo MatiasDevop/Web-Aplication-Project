@@ -1,0 +1,34 @@
+﻿@model MVClog.Models.PmActivo
+@{
+    ViewBag.Title = "Import";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<div class="container">
+    <div class="alert alert-success" role="alert">Panel estacionamiento ACTIVO Materia particulado</div>
+    <div class="container">
+        @using (Html.BeginForm("Importexcel", "PmActivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <form class="affix">
+                <tr>
+                    <td>Formato del Archivo Excel Codigo  Descripcion Unidad  en la Hoja1</td>
+
+                </tr>
+                <tr><td>Archivo de Excel </td><td><input type="file" id="FileUpload1" name="FileUpload1" class="btn btn-small" /></td></tr>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ContaminanteID, "Contaminante")
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("ContaminanteID", String.Empty)
+                    @*@Html.ValidationMessageFor(model => model.ContaminanteID)*@
+                </div>
+
+                <tr><td></td><td><input type="submit" id="Submit" name="Submit" value="Importar" class="btn btn-primary" /></td></tr>
+            </form>
+        }
+        <div>
+            @Html.ActionLink("volver atras", "Index", "Admin")
+        </div>
+    </div>
+</div>

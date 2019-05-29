@@ -1,0 +1,63 @@
+﻿@model MVClog.Models.Contaminante
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Contaminante</legend>
+
+        @Html.HiddenFor(model => model.ContaminanteID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Descripcion)
+            @Html.ValidationMessageFor(model => model.Descripcion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ValorLimite)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ValorLimite)
+            @Html.ValidationMessageFor(model => model.ValorLimite)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Unidades)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Unidades)
+            @Html.ValidationMessageFor(model => model.Unidades)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

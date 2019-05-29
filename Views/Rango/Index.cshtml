@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MVClog.Models.RangoICA>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorMin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorMax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Calificativo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Riesgo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Efectos)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorMin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorMax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calificativo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Riesgo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Efectos)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

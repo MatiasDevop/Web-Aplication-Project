@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MVClog.Models.Contaminante>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<h2>Contaminantes criterio</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorLimite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unidades)
+        </th>
+        <th>Acciones</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValorLimite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unidades)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ContaminanteID }, new { @Class = "btn btn-info" }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ContaminanteID }, new { @Class = "btn btn-info" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ContaminanteID }, new { @Class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
+
+

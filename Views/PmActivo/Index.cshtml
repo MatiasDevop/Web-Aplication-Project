@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MVClog.Models.PmActivo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPanel.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Concentracion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contaminante.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Concentracion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contaminante.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ActivoID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ActivoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ActivoID })
+        </td>
+    </tr>
+}
+
+</table>

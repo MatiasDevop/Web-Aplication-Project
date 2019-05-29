@@ -1,0 +1,50 @@
+﻿@model MVClog.Models.Pasivo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Pasivo</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FechaRegistro)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaRegistro)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Fecha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fecha)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Concentracion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Concentracion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Contaminante.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contaminante.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Estacion.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Estacion.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PasivoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
